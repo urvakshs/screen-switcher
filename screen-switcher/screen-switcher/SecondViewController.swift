@@ -11,18 +11,12 @@ class SecondViewController: UIViewController {
 
     @IBOutlet weak var segueCountLabel: UILabel!
     @IBOutlet weak var textFieldLabel: UILabel!
-    var segueCount: Int?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Screen 2 viewDidLoad")
         // Do any additional setup after loading the view.
-        if let count = segueCount {
-            segueCountLabel.text = "Number of segues = \(count)"
-        }
-        else {
-            segueCountLabel.text = "Number of segues = 0"
-        }
+        segueCountLabel.text = "Number of segues = \(Singleton.segueCount)"
     }
     /*
     override func viewWillAppear(_ animated: Bool) {

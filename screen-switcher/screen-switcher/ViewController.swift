@@ -9,11 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    private var segueCount = 0
+    //private var singleton = Singleton()
     private var segueIdentifier = "forwardSegue"
     private var destinationVC = SecondViewController()
     private var observedText: Text!
-    var textObserver: TextObserver!
+    private var textObserver: TextObserver!
     
     @IBOutlet weak var textField: UITextField!
     
@@ -45,13 +45,8 @@ class ViewController: UIViewController {
     }
     */
     @IBAction func nextPressed(_ sender: UIBarButtonItem) {
-        segueCount += 1
+        Singleton.segueCount += 1
         performSegue(withIdentifier: segueIdentifier, sender: self)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let secondVC = segue.destination as! SecondViewController
-        secondVC.segueCount = segueCount
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {

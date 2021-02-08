@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B571C7D25D10B5900F82561 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B571C7C25D10B5900F82561 /* TabBarController.swift */; };
 		1B5B5B5D25C93DCE0088E734 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5B5B5C25C93DCE0088E734 /* AppDelegate.swift */; };
 		1B5B5B5F25C93DCE0088E734 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5B5B5E25C93DCE0088E734 /* SceneDelegate.swift */; };
 		1B5B5B6125C93DCE0088E734 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5B5B6025C93DCE0088E734 /* ViewController.swift */; };
@@ -14,9 +15,12 @@
 		1B5B5B6625C93DCF0088E734 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B5B5B6525C93DCF0088E734 /* Assets.xcassets */; };
 		1B5B5B6925C93DCF0088E734 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B5B5B6725C93DCF0088E734 /* LaunchScreen.storyboard */; };
 		1B8F7E1325CA7E7E006B516E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F7E1225CA7E7E006B516E /* SecondViewController.swift */; };
+		1BCBB9D125CD184D00684DFB /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCBB9D025CD184D00684DFB /* Text.swift */; };
+		1BCBB9D425CD18F400684DFB /* TextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCBB9D325CD18F400684DFB /* TextObserver.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B571C7C25D10B5900F82561 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		1B5B5B5925C93DCE0088E734 /* screen-switcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "screen-switcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B5B5B5C25C93DCE0088E734 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1B5B5B5E25C93DCE0088E734 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +30,8 @@
 		1B5B5B6825C93DCF0088E734 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B5B5B6A25C93DCF0088E734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B8F7E1225CA7E7E006B516E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		1BCBB9D025CD184D00684DFB /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		1BCBB9D325CD18F400684DFB /* TextObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +72,9 @@
 				1B5B5B6725C93DCF0088E734 /* LaunchScreen.storyboard */,
 				1B5B5B6A25C93DCF0088E734 /* Info.plist */,
 				1B8F7E1225CA7E7E006B516E /* SecondViewController.swift */,
+				1BCBB9D025CD184D00684DFB /* Text.swift */,
+				1BCBB9D325CD18F400684DFB /* TextObserver.swift */,
+				1B571C7C25D10B5900F82561 /* TabBarController.swift */,
 			);
 			path = "screen-switcher";
 			sourceTree = "<group>";
@@ -140,8 +149,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BCBB9D425CD18F400684DFB /* TextObserver.swift in Sources */,
 				1B8F7E1325CA7E7E006B516E /* SecondViewController.swift in Sources */,
+				1BCBB9D125CD184D00684DFB /* Text.swift in Sources */,
 				1B5B5B6125C93DCE0088E734 /* ViewController.swift in Sources */,
+				1B571C7D25D10B5900F82561 /* TabBarController.swift in Sources */,
 				1B5B5B5D25C93DCE0088E734 /* AppDelegate.swift in Sources */,
 				1B5B5B5F25C93DCE0088E734 /* SceneDelegate.swift in Sources */,
 			);

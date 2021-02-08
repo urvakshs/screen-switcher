@@ -10,6 +10,7 @@ import UIKit
 class SecondViewController: UIViewController {
 
     @IBOutlet weak var segueCountLabel: UILabel!
+    @IBOutlet weak var textFieldLabel: UILabel!
     var segueCount: Int?
     
     override func viewDidLoad() {
@@ -19,8 +20,11 @@ class SecondViewController: UIViewController {
         if let count = segueCount {
             segueCountLabel.text = "Number of segues = \(count)"
         }
+        else {
+            segueCountLabel.text = "Number of segues = 0"
+        }
     }
-    
+    /*
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         print("Screen 2 viewWillAppear")
@@ -39,7 +43,7 @@ class SecondViewController: UIViewController {
         super.viewDidDisappear(true)
         print("Screen 2 viewDidDisappear")
     }
-
+    */
     /*
     // MARK: - Navigation
 
@@ -49,5 +53,4 @@ class SecondViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
 }

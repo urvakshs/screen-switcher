@@ -12,14 +12,20 @@ class ViewController: UIViewController {
     private var segueCount = 0
     private var segueIdentifier = "forwardSegue"
     private var destinationVC = SecondViewController()
+    private var observedText: Text!
+    var textObserver: TextObserver!
+    
+    @IBOutlet weak var textField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        print("Screen 1 viewDidLoad")
+        //print("Screen 1 viewDidLoad")
+        observedText = Text()
+        textObserver = TextObserver(object: observedText)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
+    /*
+     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         print("Screen 1 viewWillAppear")
     }
@@ -37,7 +43,7 @@ class ViewController: UIViewController {
         super.viewDidDisappear(true)
         print("Screen 1 viewDidDisappear")
     }
-    
+    */
     @IBAction func nextPressed(_ sender: UIBarButtonItem) {
         segueCount += 1
         performSegue(withIdentifier: segueIdentifier, sender: self)
@@ -48,5 +54,11 @@ class ViewController: UIViewController {
         secondVC.segueCount = segueCount
     }
     
+    @IBAction func saveButtonPressed(_ sender: UIButton) {
+        if let textFieldText = textField.text {
+            observedText.text = textFieldText
+        }
+        textField.text = ""
+    }
 }
 

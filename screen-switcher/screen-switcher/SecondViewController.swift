@@ -14,10 +14,10 @@ class SecondViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Screen 2 viewDidLoad")
         // Do any additional setup after loading the view.
-        segueCountLabel.text = "Number of segues = \(Singleton.segueCount)"
+        segueCountLabel.text = "Number of segues = \(ViewController.segueCount)"
     }
+
     /*
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)

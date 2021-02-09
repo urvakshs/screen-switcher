@@ -8,10 +8,6 @@
 import UIKit
 
 class SecondViewController: UIViewController, VCTextDelegate {
-    
-    func passString(string: String) {
-        print("String received is \(string)")
-    }
 
     @IBOutlet weak var segueCountLabel: UILabel!
     @IBOutlet weak var textFieldLabel: UILabel!
@@ -24,9 +20,15 @@ class SecondViewController: UIViewController, VCTextDelegate {
         
         // Updating the label to display number of forwardSegue performed
         segueCountLabel.text = "Number of segues = \(ViewController.segueCount)"
-        print("VC2 viewDidLoad")
+        //print("VC2 viewDidLoad")
     }
-
+    
+    // Protocol function used to print to debug console what was sent from first VC
+    func passString(string: String) {
+        print("String received is \(string)")
+    }
+    
+    /*
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         print("VC2 viewWillAppear")
@@ -44,5 +46,5 @@ class SecondViewController: UIViewController, VCTextDelegate {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         print("VC2 viewDidDisappear")
-    }
+    }*/
 }

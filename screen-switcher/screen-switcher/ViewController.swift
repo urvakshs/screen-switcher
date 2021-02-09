@@ -46,7 +46,7 @@ class ViewController: UIViewController, VCTextDelegate {
     }
     
     func passString(string: String) { // Required protocol function
-        return
+        return // Not needed to do anything in this VC
     }
     
     /*

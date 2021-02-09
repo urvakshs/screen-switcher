@@ -10,12 +10,13 @@ import UIKit
 class LoginVC: UIViewController { // Programmatic implementation of a tab bar controller
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func didPressLogin(_ sender: UIButton) {
         // Create and present tab bar controller
         let tabBarVC = UITabBarController()
+        
+        // Create two instances of UIViewControllers and set some basic properties
         let vc1 = UIViewController()
         let vc2 = UIViewController()
         vc1.title = "Screen 1"
@@ -28,13 +29,14 @@ class LoginVC: UIViewController { // Programmatic implementation of a tab bar co
         tabBarVC.setViewControllers([vc1, vc2], animated: false)
         tabBarVC.modalPresentationStyle = .fullScreen
         
+        // Making the tab bar more presentable with the use of system icons
         if let items = tabBarVC.tabBar.items {
             let images = ["house", "gear"]
             for i in 0..<items.count {
                 items[i].image = UIImage(systemName: images[i])
             }
         }
-        
+
         present(tabBarVC, animated: true)
     }
     

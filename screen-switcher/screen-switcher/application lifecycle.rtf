@@ -1,0 +1,39 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2513
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww9000\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri340\partightenfactor0
+
+\f0\b\fs24 \cf0 Single view controller loaded onto screen:
+\f1\b0 \
+\
+viewDidLoad -> viewWillAppear -> viewDidAppear -> viewWillDisappear -> viewDidDisappear\
+\
+\pard\pardeftab720\ri340\partightenfactor0
+\cf0 In each of the following cases, assume that we are going from View Controller 1 (VC1) to View Controller 2 (VC2)\
+\pard\pardeftab720\ri340\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri340\partightenfactor0
+
+\f0\b \cf0 Segue
+\f1\b0 :\
+\
+VC2.viewDidLoad -> VC1.viewWillDisappear -> VC2.viewWillAppear -> VC1.viewDidDisappear -> VC2.viewDidAppear\
+\
+\pard\pardeftab593\ri0\partightenfactor0
+
+\f0\b \cf0 Using navigation bar to go back:\
+\pard\pardeftab593\ri0\partightenfactor0
+
+\f1\b0 \cf0 \
+VC2.viewWillDisappear -> VC1.viewWillAppear -> VC2.viewDidDisappear -> VC1.viewDidAppear\
+\pard\pardeftab720\ri340\partightenfactor0
+\cf0 \
+\pard\pardeftab720\ri340\partightenfactor0
+
+\f0\b \cf0 Tab bar transition:
+\f1\b0 \
+\
+VC2.viewDidLoad -> VC2.viewWillAppear -> VC1.viewWillDisappear -> VC1.viewDidDisappear -> VC2.viewDidAppear}

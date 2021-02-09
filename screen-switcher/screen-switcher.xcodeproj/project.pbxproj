@@ -15,6 +15,8 @@
 		1B5B5B6625C93DCF0088E734 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1B5B5B6525C93DCF0088E734 /* Assets.xcassets */; };
 		1B5B5B6925C93DCF0088E734 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1B5B5B6725C93DCF0088E734 /* LaunchScreen.storyboard */; };
 		1B8F7E1325CA7E7E006B516E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B8F7E1225CA7E7E006B516E /* SecondViewController.swift */; };
+		1B98039725D1C5720022A121 /* application lifecycle.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 1B98039625D1C5720022A121 /* application lifecycle.rtf */; };
+		1B98039E25D255090022A121 /* VCTextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98039D25D255090022A121 /* VCTextDelegate.swift */; };
 		1BCBB9D125CD184D00684DFB /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCBB9D025CD184D00684DFB /* Text.swift */; };
 		1BCBB9D425CD18F400684DFB /* TextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCBB9D325CD18F400684DFB /* TextObserver.swift */; };
 /* End PBXBuildFile section */
@@ -30,6 +32,8 @@
 		1B5B5B6825C93DCF0088E734 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1B5B5B6A25C93DCF0088E734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1B8F7E1225CA7E7E006B516E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
+		1B98039625D1C5720022A121 /* application lifecycle.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = "application lifecycle.rtf"; sourceTree = "<group>"; };
+		1B98039D25D255090022A121 /* VCTextDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCTextDelegate.swift; sourceTree = "<group>"; };
 		1BCBB9D025CD184D00684DFB /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		1BCBB9D325CD18F400684DFB /* TextObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextObserver.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -75,6 +79,8 @@
 				1BCBB9D025CD184D00684DFB /* Text.swift */,
 				1BCBB9D325CD18F400684DFB /* TextObserver.swift */,
 				1B46653425D140FE00CD04BE /* LoginVC.swift */,
+				1B98039625D1C5720022A121 /* application lifecycle.rtf */,
+				1B98039D25D255090022A121 /* VCTextDelegate.swift */,
 			);
 			path = "screen-switcher";
 			sourceTree = "<group>";
@@ -139,6 +145,7 @@
 				1B5B5B6925C93DCF0088E734 /* LaunchScreen.storyboard in Resources */,
 				1B5B5B6625C93DCF0088E734 /* Assets.xcassets in Resources */,
 				1B5B5B6425C93DCE0088E734 /* Main.storyboard in Resources */,
+				1B98039725D1C5720022A121 /* application lifecycle.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +156,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B98039E25D255090022A121 /* VCTextDelegate.swift in Sources */,
 				1BCBB9D425CD18F400684DFB /* TextObserver.swift in Sources */,
 				1B8F7E1325CA7E7E006B516E /* SecondViewController.swift in Sources */,
 				1B46653525D140FE00CD04BE /* LoginVC.swift in Sources */,

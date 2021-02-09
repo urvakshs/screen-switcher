@@ -7,44 +7,42 @@
 
 import UIKit
 
-class SecondViewController: UIViewController {
+class SecondViewController: UIViewController, VCTextDelegate {
+    
+    func passString(string: String) {
+        print("String received is \(string)")
+    }
 
     @IBOutlet weak var segueCountLabel: UILabel!
     @IBOutlet weak var textFieldLabel: UILabel!
     
+    var delegate: VCTextDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        // Updating the label to display number of forwardSegue performed
         segueCountLabel.text = "Number of segues = \(ViewController.segueCount)"
+        print("VC2 viewDidLoad")
     }
 
-    /*
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print("Screen 2 viewWillAppear")
+        print("VC2 viewWillAppear")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        print("Screen 2 viewDidAppear")
+        print("VC2 viewDidAppear")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        print("Screen 2 viewWillDisappear")
+        print("VC2 viewWillDisappear")
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        print("Screen 2 viewDidDisappear")
+        print("VC2 viewDidDisappear")
     }
-    */
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 }

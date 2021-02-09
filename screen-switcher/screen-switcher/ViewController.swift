@@ -7,54 +7,65 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, VCTextDelegate {
     
     private var segueIdentifier = "forwardSegue"
-    private var destinationVC = SecondViewController()
     private var observedText: Text!
     private var textObserver: TextObserver!
-    static var segueCount = 0
+    static var segueCount = 0 // This will update each time a forward segue is performed and will be displayed on secondVC
     
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var textField: UITextField! // IBOutlet for text field that will be observed for changes
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        //print("Screen 1 viewDidLoad")
         observedText = Text()
         textObserver = TextObserver(object: observedText)
+        //print("VC1 viewDidLoad")
     }
+    
     @IBAction func nextPressed(_ sender: UIBarButtonItem) {
         ViewController.segueCount += 1
         performSegue(withIdentifier: segueIdentifier, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let secondVC = segue.destination as? SecondViewController {
+            secondVC.delegate = self
+            guard let text = textField.text else {
+                return
+            }
+            secondVC.passString(string: text)
+        }
     }
     
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         if let textFieldText = textField.text {
             observedText.text = textFieldText
         }
-        textField.text = ""
+        textField.text = "" // After change is observed, set textField back to empty
+    }
+    
+    func passString(string: String) { // Required protocol function
+        return
     }
     
     /*
      override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print("Screen 1 viewWillAppear")
+        print("VC1 viewWillAppear")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        print("Screen 1 viewDidAppear")
+        print("VC1 viewDidAppear")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        print("Screen 1 viewWillDisappear")
+        print("VC1 viewWillDisappear")
     }
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
-        print("Screen 1 viewDidDisappear")
-    }
-    */
+        print("VC1 viewDidDisappear")
+    }*/
 }
-

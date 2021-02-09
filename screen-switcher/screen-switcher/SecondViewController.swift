@@ -17,9 +17,8 @@ class SecondViewController: UIViewController, VCTextDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
         // Updating the label to display number of forwardSegue performed
-        segueCountLabel.text = "Number of segues = \(ViewController.segueCount)"
+        //segueCountLabel.text = "Number of segues = \(ViewController.segueCount)"
         //print("VC2 viewDidLoad")
     }
     
@@ -28,9 +27,13 @@ class SecondViewController: UIViewController, VCTextDelegate {
         print("String received is \(string)")
     }
     
-    /*
+    func passSegueCount(segueCount: Int) {
+        segueCountLabel.text = "Number of segues = \(segueCount)"
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        segueCountLabel.text = "Number of segues = \(ViewController.segueCount)"
         print("VC2 viewWillAppear")
     }
     
@@ -46,5 +49,5 @@ class SecondViewController: UIViewController, VCTextDelegate {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         print("VC2 viewDidDisappear")
-    }*/
+    }
 }

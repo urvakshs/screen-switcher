@@ -15,16 +15,24 @@ class LoginVC: UIViewController { // Programmatic implementation of a tab bar co
     @IBAction func didPressLogin(_ sender: UIButton) {
         // Create and present tab bar controller
         let tabBarVC = UITabBarController()
-                
-        // Create an instance of an alert controller
-        let alertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
         
-        // Crete two simple UIAlertAction object (cancel and proceed)
+        // Create an instance of an alert controller (action sheet style)
+        let actionSheetAlertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .actionSheet)
+        
+        // Create an instance of an alert controller (default style)
+        let defaultAlertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
+        
+        // Different types of action styles:
+        // 1. .default - Apply the default style to the action’s button.
+        // 2. .cancel - Apply a style that indicates the action cancels the operation and leaves things unchanged.
+        // 3. .destructive - Apply a style that indicates the action might change or delete data (
+        
+        // Create two simple UIAlertAction object (cancel and proceed)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (cancelAction) in
             return
         }
         
-        // Closure in this action is used to bring up the tab bar controller once user presses "proceed"
+        // Closure (action to be done) in this alertAction is used to bring up the tab bar controller once user presses "proceed"
         let proceedAction = UIAlertAction(title: "Proceed", style: .default) { (proceedAction) in
             
             // Create two instances of UIViewControllers and set some basic properties
@@ -38,7 +46,7 @@ class LoginVC: UIViewController { // Programmatic implementation of a tab bar co
             
             // Setting view controllers for the tab bar controller
             tabBarVC.setViewControllers([vc1, vc2], animated: false)
-            tabBarVC.modalPresentationStyle = .fullScreen
+            tabBarVC.modalPresentationStyle = .fullScreen // We want the new VCs to take over the full screen instead of being presented like a stack of cards
             
             // Making the tab bar more presentable with the use of system icons
             if let items = tabBarVC.tabBar.items {
@@ -47,18 +55,29 @@ class LoginVC: UIViewController { // Programmatic implementation of a tab bar co
                     items[i].image = UIImage(systemName: images[i])
                 }
             }
-            
             self.present(tabBarVC, animated: true) // "self" keyword is needed in closures
         }
         
-        // Add the actions to the alert controller
-        alertController.addAction(cancelAction)
-        alertController.addAction(proceedAction)
+        // NOTE: CODE WILL FAIL (NOT PROCEED TO TAB BAR CONTROLLER) IF YOU ADD SAME SET OF ACTIONS TO BOTH ALERT CONTROLLERS
         
-        present(alertController, animated: true) {
+        // Add the actions to the alert controllers
+        //defaultAlertController.addAction(cancelAction)
+        //defaultAlertController.addAction(proceedAction)
+        
+        actionSheetAlertController.addAction(cancelAction)
+        actionSheetAlertController.addAction(proceedAction)
+        
+        
+        // Present alert controller to user
+    
+        /*
+        present(defaultAlertController, animated: true) { // Completion handler is unused in this case
+            return
+        }*/
+        
+        present(actionSheetAlertController, animated: true) { // Completion handler is unused in this case
             return
         }
-        
     }
     
 }

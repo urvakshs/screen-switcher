@@ -8,6 +8,8 @@
 import UIKit
 
 class LoginVC: UIViewController { // Programmatic implementation of a tab bar controller
+    private let segueIdentifier = "loginToContactDetails"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -17,10 +19,10 @@ class LoginVC: UIViewController { // Programmatic implementation of a tab bar co
         let tabBarVC = UITabBarController()
         
         // Create an instance of an alert controller (action sheet style)
-        let actionSheetAlertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .actionSheet)
+        let actionSheetAlertController = UIAlertController(title: "Do you wish to proceed?", message: "", preferredStyle: .actionSheet)
         
         // Create an instance of an alert controller (default style)
-        let defaultAlertController = UIAlertController(title: "Title", message: "Message", preferredStyle: .alert)
+        let defaultAlertController = UIAlertController(title: "Do you wish to proceed?", message: "", preferredStyle: .alert)
         
         // Different types of action styles:
         // 1. .default - Apply the default style to the action’s button.
@@ -34,7 +36,7 @@ class LoginVC: UIViewController { // Programmatic implementation of a tab bar co
         
         // Closure (action to be done) in this alertAction is used to bring up the tab bar controller once user presses "proceed"
         let proceedAction = UIAlertAction(title: "Proceed", style: .default) { (proceedAction) in
-            
+            /*
             // Create two instances of UIViewControllers and set some basic properties
             let vc1 = UIViewController()
             let vc2 = UIViewController()
@@ -56,28 +58,31 @@ class LoginVC: UIViewController { // Programmatic implementation of a tab bar co
                 }
             }
             self.present(tabBarVC, animated: true) // "self" keyword is needed in closures
+            */
+            self.performSegue(withIdentifier: self.segueIdentifier, sender: self)
+            
         }
         
-        // NOTE: CODE WILL FAIL (NOT PROCEED TO TAB BAR CONTROLLER) IF YOU ADD SAME SET OF ACTIONS TO BOTH ALERT CONTROLLERS
+        // NOTE TO SELF: CODE WILL FAIL (NOT PROCEED TO TAB BAR CONTROLLER) IF YOU ADD SAME SET OF ACTIONS TO BOTH ALERT CONTROLLERS
         
         // Add the actions to the alert controllers
-        //defaultAlertController.addAction(cancelAction)
-        //defaultAlertController.addAction(proceedAction)
+        defaultAlertController.addAction(cancelAction)
+        defaultAlertController.addAction(proceedAction)
         
-        actionSheetAlertController.addAction(cancelAction)
-        actionSheetAlertController.addAction(proceedAction)
+        //actionSheetAlertController.addAction(cancelAction)
+        //actionSheetAlertController.addAction(proceedAction)
         
         
         // Present alert controller to user
     
-        /*
+        
         present(defaultAlertController, animated: true) { // Completion handler is unused in this case
             return
-        }*/
-        
+        }
+        /*
         present(actionSheetAlertController, animated: true) { // Completion handler is unused in this case
             return
-        }
+        }*/
     }
     
 }

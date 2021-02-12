@@ -8,7 +8,7 @@
 import UIKit
 
 class ViewController: UIViewController, VCTextDelegate {
-    private var segueIdentifier = "forwardSegue"
+    private let segueIdentifier = "forwardSegue"
     private var observedText: Text!
     private var textObserver: TextObserver!
     static var segueCount = 0 // This will update each time a forward segue is performed and will be displayed on secondVC

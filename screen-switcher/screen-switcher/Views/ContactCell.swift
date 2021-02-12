@@ -7,17 +7,17 @@
 
 import UIKit
 
+// Custom cell class for displaying contact data on table view
 class ContactCell: UITableViewCell {
 
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var phoneNumLabel: UILabel!
     
-        override func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        nameLabel.text = "Hello"
     }
-
+    
+    // Method called whenever cell needs to be updated with new information
     func updateView(contact: [String: String]) {
         let contactName = contact["Name"]!
         let phoneNum = contact["Phone Number"]!

@@ -10,6 +10,7 @@ import Foundation
 struct Validator {
     private let phoneNumberSize = 10
     
+    // Check if given string is empty. Return true if empty
     func isEmpty(string: String) -> Bool {
         if string == "" {
             return true
@@ -17,10 +18,12 @@ struct Validator {
         return false
     }
     
+    // Check if phone number string contains only numbers. Return true if all numbers
     func isValidPhoneNum(string: String) -> Bool {
         return string.rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
     }
     
+    // Check if phone number contains only 10 digits
     func isValidPhoneNumLength(string: String) -> Bool {
         if string.count != phoneNumberSize {
             return false
@@ -28,6 +31,7 @@ struct Validator {
         return true
     }
     
+    // Check if text string contains only alphabets (no special characters or numbers)
     func isValidString(string: String) -> Bool {
         return string.rangeOfCharacter(from: CharacterSet.letters.inverted) == nil
     }

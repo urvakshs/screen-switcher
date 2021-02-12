@@ -32,6 +32,7 @@ extension ContactsTableVC: UITableViewDataSource {
         return contactsArray.count
     }
     
+    // Return a cell to be allocated at the particular row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "ContactCell") as? ContactCell {
             cell.updateView(contact: contactsArray[indexPath.row])

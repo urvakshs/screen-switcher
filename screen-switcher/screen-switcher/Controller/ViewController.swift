@@ -7,6 +7,7 @@
 
 import UIKit
 
+
 class ViewController: UIViewController, VCTextDelegate {
     private let segueIdentifier = "forwardSegue"
     private var observedText: Text!

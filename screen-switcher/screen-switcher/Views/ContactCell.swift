@@ -24,4 +24,11 @@ class ContactCell: UITableViewCell {
         nameLabel.text = "\(contactName)"
         phoneNumLabel.text = "\(phoneNum)"
     }
+    
+    func updateView(contact: Contact) {
+        if let contactName = contact.name, let phoneNumber = contact.phoneNumber {
+            nameLabel.text = contactName
+            phoneNumLabel.text = phoneNumber
+        }
+    }
 }

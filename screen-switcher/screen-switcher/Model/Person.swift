@@ -6,11 +6,20 @@
 //
 
 import Foundation
+import CoreData
 
 // Struct containing details entered for each new contact/user
-struct Contact: Equatable { // Equatable needed for "contains" method to check for existence in array
-    private var name: String
-    private var phoneNumber: String
+class Person: Equatable {
+    static func == (lhs: Person, rhs: Person) -> Bool {
+        if lhs == rhs {
+            return true
+        }
+        return false
+    }
+    
+    // Equatable needed for "contains" method to check for existence in array
+    var name: String
+    var phoneNumber: String
     
     init(firstName: String, lastName: String, phoneNum: String) {
         self.name = "\(firstName) " + "\(lastName)"

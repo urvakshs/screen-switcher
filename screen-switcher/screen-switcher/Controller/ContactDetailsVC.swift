@@ -6,6 +6,10 @@
 //
 
 import UIKit
+import CoreData
+
+// Instance of app delegate needed for Core Data (accessible across all files in project)
+let appDelegate = UIApplication.shared.delegate as? AppDelegate
 
 class ContactDetailsVC: UIViewController {
     
@@ -73,7 +77,7 @@ class ContactDetailsVC: UIViewController {
         }
         
         // Create new instance of Contact type
-        let newContact = Contact(firstName: firstNameField.text!, lastName: secondNameField.text!, phoneNum: phoneNumberField.text!)
+        let newContact = Person(firstName: firstNameField.text!, lastName: secondNameField.text!, phoneNum: phoneNumberField.text!)
         
         // Only add to array if such a contact does not already exist
         let userDict = ["Name": "\(firstNameField.text!) " + "\(secondNameField.text!)", "Phone Number": phoneNumberField.text!]
@@ -81,9 +85,31 @@ class ContactDetailsVC: UIViewController {
             contactsArray!.append(userDict)
         }
         defaults.set(contactsArray, forKey: "Contacts")
-                
-        // Perform segue
+        
+        save(completionHandler: { (complete) in
+            // Perform segue once data is saved succcessfully to Core Data
+            if complete {
+                performSegue(withIdentifier: segueIdentifier, sender: self)
+            }
+        }, name: "\(firstNameField.text!) " + "\(secondNameField.text!)", phoneNumber: phoneNumberField.text!)
+        
         performSegue(withIdentifier: segueIdentifier, sender: self)
+    }
+    
+    func save(completionHandler: (_ finished: Bool) -> (), name: String, phoneNumber: String) {
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
+        let contact = Contact(context: managedContext)
+        contact.name = "\(firstNameField.text!) " + "\(secondNameField.text!)"
+        contact.phoneNumber = phoneNumberField.text!
+        
+        do {
+            try managedContext.save()
+            print("Data save successful.")
+            completionHandler(true)
+        } catch {
+            print("Could not save \(error.localizedDescription)")
+            completionHandler(false)
+        }
     }
     
 }

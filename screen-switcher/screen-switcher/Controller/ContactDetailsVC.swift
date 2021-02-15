@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 // Instance of app delegate needed for Core Data (accessible across all files in project)
-let appDelegate = UIApplication.shared.delegate as? AppDelegate
+let appDelegate = UIApplication.shared.delegate as? AppDelegate // Instance created outside class to be accessible by all files
 
 class ContactDetailsVC: UIViewController {
     
@@ -76,9 +76,6 @@ class ContactDetailsVC: UIViewController {
             return
         }
         
-        // Create new instance of Contact type
-        let newContact = Person(firstName: firstNameField.text!, lastName: secondNameField.text!, phoneNum: phoneNumberField.text!)
-        
         // Only add to array if such a contact does not already exist
         let userDict = ["Name": "\(firstNameField.text!) " + "\(secondNameField.text!)", "Phone Number": phoneNumberField.text!]
         if !contactsArray!.contains(userDict) {
@@ -87,7 +84,7 @@ class ContactDetailsVC: UIViewController {
         defaults.set(contactsArray, forKey: "Contacts")
         
         save(completionHandler: { (complete) in
-            // Perform segue once data is saved succcessfully to Core Data
+            // Perform segue once data is saved succcessfully
             if complete {
                 performSegue(withIdentifier: segueIdentifier, sender: self)
             }
@@ -96,6 +93,7 @@ class ContactDetailsVC: UIViewController {
         performSegue(withIdentifier: segueIdentifier, sender: self)
     }
     
+    // Save data using Core Data
     func save(completionHandler: (_ finished: Bool) -> (), name: String, phoneNumber: String) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
         let contact = Contact(context: managedContext)
@@ -104,12 +102,9 @@ class ContactDetailsVC: UIViewController {
         
         do {
             try managedContext.save()
-            print("Data save successful.")
             completionHandler(true)
         } catch {
-            print("Could not save \(error.localizedDescription)")
-            completionHandler(false)
+            fatalError("Could not save \(error.localizedDescription)")
         }
     }
-    
 }

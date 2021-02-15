@@ -17,7 +17,7 @@ class ContactCell: UITableViewCell {
         super.awakeFromNib()
     }
     
-    // Method called whenever cell needs to be updated with new information
+    // Method called whenever cell needs to be updated with new information (using user defaults)
     func updateView(contact: [String: String]) {
         let contactName = contact["Name"]!
         let phoneNum = contact["Phone Number"]!
@@ -25,6 +25,7 @@ class ContactCell: UITableViewCell {
         phoneNumLabel.text = "\(phoneNum)"
     }
     
+    // Alternative method called whenever cell needs to be updated with new information using Core Data
     func updateView(contact: Contact) {
         if let contactName = contact.name, let phoneNumber = contact.phoneNumber {
             nameLabel.text = contactName

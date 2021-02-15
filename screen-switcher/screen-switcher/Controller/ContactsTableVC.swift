@@ -16,25 +16,21 @@ class ContactsTableVC: UIViewController, UITableViewDelegate {
     private let entityName = "Contact" // Name of entity stored in Core Data model
     var contacts: [Contact] = []
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.fetchData { (complete) in
-            if complete {
-                
-            }
-        }
-        
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         contactsTableView.delegate = self
         contactsTableView.dataSource = self
         
-        // Optionally
-        if let savedArray = defaults.object(forKey: "Contacts") as? [[String: String]] {
+        if let savedArray = defaults.object(forKey: "Contacts") as? [[String: String]] { // Optional binding to extract contacts array from user defaults
             contactsArray = savedArray
+        }
+        
+        self.fetchData { (complete) in
+            //TODO: Complete the completion handler
+            if complete {
+                
+            }
         }
     }
     
@@ -46,12 +42,10 @@ class ContactsTableVC: UIViewController, UITableViewDelegate {
         } catch {
             fatalError("Failed to fetch employees: \(error)")
         }
-        
     }
 }
 
 extension ContactsTableVC: UITableViewDataSource {
-    
     // Returns number of rows to display in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return contacts.count

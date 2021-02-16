@@ -38,6 +38,7 @@ class ContactsTableVC: UIViewController, UITableViewDelegate {
             // Perform search on unwrapped string
             CoreDataHandler.shared.searchData(searchString: newText) { (complete) in
                 if complete {
+                    // Reload data in background thread to avoid issues with indexing CoreDataHandler's contacts array
                     DispatchQueue.main.async {
                         self.contactsTableView.reloadData()
                     }

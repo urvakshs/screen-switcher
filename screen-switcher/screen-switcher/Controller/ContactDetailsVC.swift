@@ -17,6 +17,7 @@ class ContactDetailsVC: UIViewController {
     private let segueIdentifier = "contactDetailsToTable"
     private let validator = Validator() // Validator object to be used for validating text fields
     private let defaults = UserDefaults.standard // Initialise user defaults
+    private var coreDataHandler = CoreDataHandler()
     
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var secondNameField: UITextField!
@@ -83,7 +84,7 @@ class ContactDetailsVC: UIViewController {
         }
         defaults.set(contactsArray, forKey: "Contacts")
         
-        save(completionHandler: { (complete) in
+        coreDataHandler.save(completionHandler: { (complete) in
             // Perform segue once data is saved succcessfully
             if complete {
                 performSegue(withIdentifier: segueIdentifier, sender: self)
@@ -91,20 +92,5 @@ class ContactDetailsVC: UIViewController {
         }, name: "\(firstNameField.text!) " + "\(secondNameField.text!)", phoneNumber: phoneNumberField.text!)
         
         performSegue(withIdentifier: segueIdentifier, sender: self)
-    }
-    
-    // Save data using Core Data
-    func save(completionHandler: (_ finished: Bool) -> (), name: String, phoneNumber: String) {
-        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
-        let contact = Contact(context: managedContext)
-        contact.name = "\(firstNameField.text!) " + "\(secondNameField.text!)"
-        contact.phoneNumber = phoneNumberField.text!
-        
-        do {
-            try managedContext.save()
-            completionHandler(true)
-        } catch {
-            fatalError("Could not save \(error.localizedDescription)")
-        }
     }
 }

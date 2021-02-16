@@ -38,5 +38,18 @@ struct CoreDataHandler {
         }
     }
     
+    // Save data using Core Data
+    func save(completionHandler: (_ finished: Bool) -> (), name: String, phoneNumber: String) {
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else { return }
+        let contact = Contact(context: managedContext)
+        contact.name = name
+        contact.phoneNumber = phoneNumber
+        do {
+            try managedContext.save()
+            completionHandler(true)
+        } catch {
+            fatalError("Could not save \(error.localizedDescription)")
+        }
+    }
     
 }

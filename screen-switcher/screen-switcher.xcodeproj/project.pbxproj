@@ -86,7 +86,6 @@
 				1B5B5B6525C93DCF0088E734 /* Assets.xcassets */,
 				1B5B5B6725C93DCF0088E734 /* LaunchScreen.storyboard */,
 				1B5B5B6A25C93DCF0088E734 /* Info.plist */,
-				1BCBB9D325CD18F400684DFB /* TextObserver.swift */,
 				1B98039625D1C5720022A121 /* application lifecycle.rtf */,
 				1B98039D25D255090022A121 /* VCTextDelegate.swift */,
 			);
@@ -111,6 +110,7 @@
 				1BCBB9D025CD184D00684DFB /* Text.swift */,
 				1B8B3F9E25D501DE00D3E026 /* Validator.swift */,
 				1B6B515125D9CAEE007A5705 /* screen-switcher.xcdatamodeld */,
+				1BCBB9D325CD18F400684DFB /* TextObserver.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

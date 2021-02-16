@@ -29,19 +29,55 @@ class ContactsTableVC: UIViewController, UITableViewDelegate {
         self.fetchData { (complete) in
             //TODO: Complete the completion handler
             if complete {
-                
+                print("Success")
             }
         }
     }
     
+    // This method fetches data to populate table view upon VC being presented to the user
     func fetchData(completionHandler: (_ complete: Bool) -> ()) {
         guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
         let fetchRequest = NSFetchRequest<Contact>(entityName: entityName)
         do {
             contacts = try managedContext.fetch(fetchRequest)
         } catch {
+            fatalError("Failed to fetch data: \(error)")
+        }
+        contactsTableView.reloadData()
+    }
+    
+    // Perform search on what is typed in
+    @IBAction func textFieldEdited(_ sender: UITextField) {
+        if let newText = sender.text {
+            // Perform search on unwrapped string
+            if newText == "" {
+                print("Empty field")
+                fetchData { (complete) in
+                    if complete {
+                        return
+                    }
+                }
+            }
+            searchData(searchString: newText) { (complete) in
+                if complete {
+                    print("search successful. results in table view")
+                }
+            }
+        }
+    }
+    
+    // Searching for data using NSPredicate
+    func searchData(searchString string: String, completionHandler: (_ complete: Bool) -> ()) {
+        guard let managedContext = appDelegate?.persistentContainer.viewContext else {return}
+        let predicate = NSPredicate(format: "name contains %@", string)
+        let fetchRequest = NSFetchRequest<Contact>(entityName: entityName)
+        fetchRequest.predicate = predicate
+        do {
+            contacts = try managedContext.fetch(fetchRequest)
+        } catch {
             fatalError("Failed to fetch employees: \(error)")
         }
+        contactsTableView.reloadData()
     }
 }
 

@@ -8,7 +8,7 @@
 import Foundation
 
 struct Validator {
-    private let phoneNumberSize = 10
+    private let phoneNumberSize = 10 // Phone number will ALWAYS be of 10 digits only hence declared as constant
     
     // Check if given string is empty. Return true if empty
     func isEmpty(string: String) -> Bool {

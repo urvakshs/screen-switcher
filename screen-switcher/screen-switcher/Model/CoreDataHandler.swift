@@ -10,7 +10,10 @@ import CoreData
 
 struct CoreDataHandler {
     private let entityName = "Contact" // Name of an entity stored in Core Data model
-    lazy var contacts: [Contact] = []
+    var contacts: [Contact] = []
+    
+    // Using singleton pattern for CoreDataHandler struct
+    static var shared = CoreDataHandler()
     
     // This method fetches data to populate table view upon VC being presented to the user
     mutating func fetchData(completionHandler: (_ complete: Bool) -> ()){

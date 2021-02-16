@@ -17,7 +17,6 @@ class ContactDetailsVC: UIViewController {
     private let segueIdentifier = "contactDetailsToTable"
     private let validator = Validator() // Validator object to be used for validating text fields
     private let defaults = UserDefaults.standard // Initialise user defaults
-    private var coreDataHandler = CoreDataHandler()
     
     @IBOutlet weak var firstNameField: UITextField!
     @IBOutlet weak var secondNameField: UITextField!
@@ -84,7 +83,7 @@ class ContactDetailsVC: UIViewController {
         }
         defaults.set(contactsArray, forKey: "Contacts")
         
-        coreDataHandler.save(completionHandler: { (complete) in
+        CoreDataHandler.shared.save(completionHandler: { (complete) in
             // Perform segue once data is saved succcessfully
             if complete {
                 performSegue(withIdentifier: segueIdentifier, sender: self)

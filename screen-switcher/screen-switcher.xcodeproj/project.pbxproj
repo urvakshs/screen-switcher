@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1B3F020625DB982700EE70E1 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F020525DB982700EE70E1 /* CoreDataHandler.swift */; };
 		1B46653525D140FE00CD04BE /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B46653425D140FE00CD04BE /* LoginVC.swift */; };
 		1B5B5B5D25C93DCE0088E734 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5B5B5C25C93DCE0088E734 /* AppDelegate.swift */; };
 		1B5B5B5F25C93DCE0088E734 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5B5B5E25C93DCE0088E734 /* SceneDelegate.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1B3F020525DB982700EE70E1 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		1B46653425D140FE00CD04BE /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		1B5B5B5925C93DCE0088E734 /* screen-switcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "screen-switcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B5B5B5C25C93DCE0088E734 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 				1B8B3F9E25D501DE00D3E026 /* Validator.swift */,
 				1B6B515125D9CAEE007A5705 /* screen-switcher.xcdatamodeld */,
 				1BCBB9D325CD18F400684DFB /* TextObserver.swift */,
+				1B3F020525DB982700EE70E1 /* CoreDataHandler.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -202,6 +205,7 @@
 				1B8B3F9F25D501DE00D3E026 /* Validator.swift in Sources */,
 				1B8F7E1325CA7E7E006B516E /* SecondViewController.swift in Sources */,
 				1B46653525D140FE00CD04BE /* LoginVC.swift in Sources */,
+				1B3F020625DB982700EE70E1 /* CoreDataHandler.swift in Sources */,
 				1B82B50C25D46D18002E72B1 /* ContactDetailsVC.swift in Sources */,
 				1BCBB9D125CD184D00684DFB /* Text.swift in Sources */,
 				1B6B515325D9CAEE007A5705 /* screen-switcher.xcdatamodeld in Sources */,

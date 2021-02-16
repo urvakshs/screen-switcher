@@ -9,6 +9,9 @@ import Foundation
 
 struct Validator {
     private let phoneNumberSize = 10 // Phone number will ALWAYS be of 10 digits only hence declared as constant
+    let firstNameField = "firstName"
+    let secondNameField = "secondName"
+    let phoneNumField = "phoneNum"
     
     // Check if given string is empty. Return true if empty
     func isEmpty(string: String) -> Bool {
@@ -61,5 +64,37 @@ struct Validator {
             return ("isInvalidString", false)
         }
         else { return ("", true) }
+    }
+    
+    // A makeshift error handling function that will print the type of error to the debug console
+    func printErrorMessage(fieldName field: String, errorCode error: String) {
+        if field == self.firstNameField {
+            switch error {
+            case "isEmpty":
+                print("First name field is empty. Please input something")
+            default:
+                print("First name field contains invalid characters. Please use letters only")
+            }
+        }
+        
+        else if field == self.secondNameField {
+            switch error {
+            case "isEmpty":
+                print("Second name field is empty. Please input something")
+            default:
+                print("Second name field contains invalid characters. Please use letters only")
+            }
+        }
+        
+        else if field == self.phoneNumField {
+            switch error {
+            case "isEmpty":
+                print("Phone number field is empty. Please input something")
+            case "isInvalidPhoneNum":
+                print("Phone number contains invalid characters such as letters or special characters. Please input only numbers")
+            default:
+                print("Phone number is not of valid length. Phone number contains 10 digits (without extension)")
+            }
+        }
     }
 }

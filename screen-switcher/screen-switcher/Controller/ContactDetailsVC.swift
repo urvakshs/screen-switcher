@@ -39,44 +39,29 @@ class ContactDetailsVC: UIViewController {
         
         // Perform validation on first name
         (errorCode, validity) = validator.validateName(inputString: firstNameField.text!)
+        // If first name is invalid, print the corresponding error message depending on the error code returned from validator
         if validity == false {
-            if errorCode == "isEmpty" {
-                print("First name field is empty. Please input something")
-            }
-            else {
-                print("First name field contains invalid characters. Please use letters only")
-            }
+            validator.printErrorMessage(fieldName: validator.firstNameField, errorCode: errorCode)
             return
         }
         
         // Perform validation on last name
         (errorCode, validity) = validator.validateName(inputString: secondNameField.text!)
+        // If last name is invalid, print the corresponding error message depending on the error code returned from validator
         if validity == false {
-            if errorCode == "isEmpty" {
-                print("Second name field is empty. Please input something")
-            }
-            else {
-                print("Second name field contains invalid characters. Please use letters only")
-            }
+            validator.printErrorMessage(fieldName: validator.secondNameField, errorCode: errorCode)
             return
         }
         
         // Perform validation on phone number
         (errorCode, validity) = validator.validatePhoneNumber(inputString: phoneNumberField.text!)
+        // If phone number is invalid, print the corresponding error message depending on the error code returned from validator
         if validity == false {
-            if errorCode == "isEmpty" {
-                print("Phone number field is empty. Please input something")
-            }
-            else if errorCode == "isInvalidPhoneNum" {
-                print("Phone number contains invalid characters such as letters or special characters. Please input only numbers")
-            }
-            else {
-                print("Phone number is not of valid length. Phone number contains 10 digits (without extension)")
-            }
+            validator.printErrorMessage(fieldName: validator.phoneNumField, errorCode: errorCode)
             return
         }
         
-        // Only add to array if such a contact does not already exist
+        // Only add to array of contact dictionaries if such a contact does not already exist
         let userDict = ["Name": "\(firstNameField.text!) " + "\(secondNameField.text!)", "Phone Number": phoneNumberField.text!]
         if !contactsArray!.contains(userDict) {
             contactsArray!.append(userDict)

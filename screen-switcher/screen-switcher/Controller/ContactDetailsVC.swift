@@ -35,28 +35,28 @@ class ContactDetailsVC: UIViewController {
     
     @IBAction func submitPressed(_ sender: UIButton) {
         var errorCode: String
-        var validity: Bool
+        var isValid: Bool
         
         // Perform validation on first name
-        (errorCode, validity) = validator.validateName(inputString: firstNameField.text!)
+        (errorCode, isValid) = validator.validateName(inputString: firstNameField.text!)
         // If first name is invalid, print the corresponding error message depending on the error code returned from validator
-        if validity == false {
+        if !isValid {
             validator.printErrorMessage(fieldName: validator.firstNameField, errorCode: errorCode)
             return
         }
         
         // Perform validation on last name
-        (errorCode, validity) = validator.validateName(inputString: secondNameField.text!)
+        (errorCode, isValid) = validator.validateName(inputString: secondNameField.text!)
         // If last name is invalid, print the corresponding error message depending on the error code returned from validator
-        if validity == false {
+        if !isValid {
             validator.printErrorMessage(fieldName: validator.secondNameField, errorCode: errorCode)
             return
         }
         
         // Perform validation on phone number
-        (errorCode, validity) = validator.validatePhoneNumber(inputString: phoneNumberField.text!)
+        (errorCode, isValid) = validator.validatePhoneNumber(inputString: phoneNumberField.text!)
         // If phone number is invalid, print the corresponding error message depending on the error code returned from validator
-        if validity == false {
+        if !isValid {
             validator.printErrorMessage(fieldName: validator.phoneNumField, errorCode: errorCode)
             return
         }

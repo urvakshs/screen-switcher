@@ -37,7 +37,7 @@ class SecondViewController: UIViewController, VCTextDelegate {
         segueCountLabel.text = "Number of segues = \(ViewController.segueCount)"
         print("VC2 viewWillAppear")
     }
-    
+    /*
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         print("VC2 viewDidAppear")
@@ -50,5 +50,5 @@ class SecondViewController: UIViewController, VCTextDelegate {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(true)
         print("VC2 viewDidDisappear")
-    }
+    }*/
 }

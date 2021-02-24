@@ -23,6 +23,10 @@ struct SearchResultsManager {
         performRequest(with: urlString)
     }
     
+    func fetchImage() {
+        performRequest(with: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/b2/61/90/b26190b5-27e6-7e40-4edd-ecdbe549e132/source/60x60bb.jpg")
+    }
+    
     func performRequest(with urlString: String) {
         // 1. Create a URL
         if let url = URL(string: urlString) { // Optional binding
@@ -46,7 +50,6 @@ struct SearchResultsManager {
             task.resume() // Newly initialised tasks need to be resumed since they are in a suspended state
         }
     }
-    
     
     func parseJSON(_ searchData: Data) -> SearchData? {
         let decoder = JSONDecoder()

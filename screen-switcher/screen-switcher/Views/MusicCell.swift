@@ -26,6 +26,15 @@ class MusicCell: UITableViewCell {
         // Ensuring that the album art image looks good in the 100 px. x 100 px. square by setting the content mode to aspect fit
         albumArtImageView.contentMode = .scaleAspectFit
         
+        // Create URL
+        let url = URL(string: song.artworkUrl60!)!
+
+        // Fetch Image Data
+        if let data = try? Data(contentsOf: url) {
+            // Create Image and Update Image View
+            albumArtImageView.image = UIImage(data: data)
+        }
+        
         let songLengthInSeconds = Double(song.trackTimeMillis!) * 0.001
         let songLengthInMins = Int(songLengthInSeconds / 60)
         

@@ -12,8 +12,11 @@ class iTunesSearchVC: UIViewController, UITableViewDelegate {
     @IBOutlet weak var iTunesTableView: UITableView!
     @IBOutlet weak var searchTextField: UITextField!
     
+    private var selectedSongURL: String?
     var songsArray: [Song] = []
     var searchResultsManager = SearchResultsManager()
+    
+    let segueIdentifier = "searchToAudioPlayback"
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,12 +30,19 @@ class iTunesSearchVC: UIViewController, UITableViewDelegate {
         self.iTunesTableView.rowHeight = 120;
         if let searchText = searchTextField.text {
             searchResultsManager.fetchSongs(searchString: searchText)
-            //searchResultsManager.fetchImage()
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.cellForRow(at: indexPath)?.isSelected = false
+        tableView.cellForRow(at: indexPath)?.isHighlighted = false
+        selectedSongURL = songsArray[indexPath.row].previewUrl
+        performSegue(withIdentifier: segueIdentifier, sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? audioPlayerVC {
+            destinationVC.urlString = selectedSongURL
+        }
     }
 }
 
@@ -56,6 +66,11 @@ extension iTunesSearchVC: UITableViewDataSource {
 
 // MARK: Search Results Delegate Methods
 extension iTunesSearchVC: SearchResultsManagerDelegate {
+    
+    func passPreviewURLString(_ previewString: String) {
+        return
+    }
+    
     func didUpdateCells(_ searchData: SearchData) {
         songsArray = searchData.results
         // Changes to UI must be done on main thread

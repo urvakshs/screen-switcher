@@ -8,6 +8,7 @@
 import Foundation
 
 protocol SearchResultsManagerDelegate { // Using delegation design principle so that data can be easily shared with iTunesSearchVC
+    func passPreviewURLString(_ previewString: String)
     func didUpdateCells(_ searchData: SearchData)
     func didFailWithError(error: Error)
 }
@@ -21,10 +22,6 @@ struct SearchResultsManager {
         let modifiedSearchStr = searchString.replacingOccurrences(of: " ", with: "+")
         let urlString = "\(iTunesURL)\(modifiedSearchStr)"
         performRequest(with: urlString)
-    }
-    
-    func fetchImage() {
-        performRequest(with: "https://is1-ssl.mzstatic.com/image/thumb/Music/v4/b2/61/90/b26190b5-27e6-7e40-4edd-ecdbe549e132/source/60x60bb.jpg")
     }
     
     func performRequest(with urlString: String) {

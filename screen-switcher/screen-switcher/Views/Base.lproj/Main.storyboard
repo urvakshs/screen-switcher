@@ -447,11 +447,39 @@
                     <connections>
                         <outlet property="iTunesTableView" destination="qmp-gN-Ts9" id="kMp-x6-TUY"/>
                         <outlet property="searchTextField" destination="zX6-u7-iJ2" id="VkF-Gn-0PP"/>
+                        <segue destination="x9j-Kf-cB5" kind="presentation" identifier="searchToAudioPlayback" id="pE7-j7-9uX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HPq-cI-nIl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1866.6666666666667" y="2041.0714285714284"/>
+        </scene>
+        <!--Audio PlayerVC-->
+        <scene sceneID="yti-pv-OQP">
+            <objects>
+                <viewController id="x9j-Kf-cB5" customClass="audioPlayerVC" customModule="screen_switcher" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rd8-B4-8Xm">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENJOY YOUR MUSIC!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qgz-Wa-QBD">
+                                <rect key="frame" x="124.5" y="410.5" width="165.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="KGf-Lm-TdT"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="qgz-Wa-QBD" firstAttribute="centerX" secondItem="Rd8-B4-8Xm" secondAttribute="centerX" id="JwZ-qC-lv2"/>
+                            <constraint firstItem="qgz-Wa-QBD" firstAttribute="centerY" secondItem="Rd8-B4-8Xm" secondAttribute="centerY" id="MdO-82-heC"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="G04-fa-AAq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2676.811594202899" y="2040.4017857142856"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="dIz-s4-aH8">

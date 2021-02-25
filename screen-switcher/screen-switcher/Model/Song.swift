@@ -17,5 +17,5 @@ struct Song: Decodable {
     let trackTimeMillis: Int?
     let artistName: String?
     let artworkUrl60: String?
-
+    let previewUrl: String?
 }

@@ -21,15 +21,18 @@ class iTunesSearchVC: UIViewController, UITableViewDelegate {
         iTunesTableView.delegate = self
         iTunesTableView.dataSource = self
         searchResultsManager.delegate = self
-        self.iTunesTableView.rowHeight = 120;
     }
     
     @IBAction func searchButtonPressed(_ sender: UIButton) {
-        
+        self.iTunesTableView.rowHeight = 120;
         if let searchText = searchTextField.text {
             searchResultsManager.fetchSongs(searchString: searchText)
             //searchResultsManager.fetchImage()
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.cellForRow(at: indexPath)?.isSelected = false
     }
 }
 
@@ -55,7 +58,6 @@ extension iTunesSearchVC: UITableViewDataSource {
 extension iTunesSearchVC: SearchResultsManagerDelegate {
     func didUpdateCells(_ searchData: SearchData) {
         songsArray = searchData.results
-        print(searchData.results)
         // Changes to UI must be done on main thread
         DispatchQueue.main.async {
             self.iTunesTableView.reloadData()

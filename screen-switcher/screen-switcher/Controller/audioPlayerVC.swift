@@ -11,7 +11,7 @@ import AVFoundation
 class audioPlayerVC: UIViewController {
     var urlString: String?
     var avPlayer: AVAudioPlayer?
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -20,16 +20,16 @@ class audioPlayerVC: UIViewController {
                 // Fetch Music Data
                 if let data = try? Data(contentsOf: url) {
                     do {
+                        // Create a new AVAudioPlayer instance and optionally unwrap
                         avPlayer = try AVAudioPlayer(data: data)
                         if let player = avPlayer {
-                            player.volume = 1.0
+                            player.volume = 1.0 // Not sure if this line is necessary?
                             player.prepareToPlay()
                             player.play()
                         }
                     } catch {
                         print("Error creating or playing back from AVAudioPlayer. \(error.localizedDescription)")
                     }
-                
                 }
             }
         }

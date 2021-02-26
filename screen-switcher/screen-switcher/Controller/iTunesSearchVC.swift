@@ -15,8 +15,8 @@ class iTunesSearchVC: UIViewController, UITableViewDelegate {
     private var selectedSongURL: String?
     var songsArray: [Song] = []
     var searchResultsManager = SearchResultsManager()
-    
     let segueIdentifier = "searchToAudioPlayback"
+    let alertGenerator = AlertGenerator()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +27,20 @@ class iTunesSearchVC: UIViewController, UITableViewDelegate {
     }
     
     @IBAction func searchButtonPressed(_ sender: UIButton) {
-        self.iTunesTableView.rowHeight = 120;
+        self.iTunesTableView.rowHeight = 120; // Needed to this line because my constraints kept failing and resizing the rows...
         if let searchText = searchTextField.text {
-            searchResultsManager.fetchSongs(searchString: searchText)
+            let errorCode = searchResultsManager.fetchSongs(searchString: searchText)
+            // If there is an issue in internet connectivity
+            if errorCode == 1 {
+                print("Entered into error handler in iTunesSearchVC")
+                var noNetAlert = alertGenerator.generateAlert(withTitle: "No connection to internet found. Please try again!", withMessage: "")
+                noNetAlert = alertGenerator.addAction(withTitle: "OK", forAlert: noNetAlert)
+                DispatchQueue.main.async {
+                    self.present(noNetAlert, animated: true) { // Completion handler is unused in this case
+                        return
+                    }
+                }
+            }
         }
     }
     
@@ -58,7 +69,7 @@ extension iTunesSearchVC: UITableViewDataSource {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "MusicCell") as? MusicCell {
             cell.updateView(song: songsArray[indexPath.row])
             return cell
-        } else { // If tableView cell cannot be casted as ContactCell, then return a blank ContactCell object
+        } else { // If tableView cell cannot be casted as MusicCell, then return a blank MusicCell object
             return MusicCell()
         }
     }
@@ -82,6 +93,5 @@ extension iTunesSearchVC: SearchResultsManagerDelegate {
     func didFailWithError(error: Error) {
         print("Error: \(error.localizedDescription)")
     }
-    
-    
 }
+

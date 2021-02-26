@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1B1B4DDF25E7894200BDA6DF /* SearchResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1B4DDE25E7894200BDA6DF /* SearchResultsManager.swift */; };
+		1B270E0425E8D03E0069975D /* AlertGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B270E0325E8D03E0069975D /* AlertGenerator.swift */; };
 		1B3F020625DB982700EE70E1 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F020525DB982700EE70E1 /* CoreDataHandler.swift */; };
 		1B46653525D140FE00CD04BE /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B46653425D140FE00CD04BE /* LoginVC.swift */; };
 		1B5B5B5D25C93DCE0088E734 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5B5B5C25C93DCE0088E734 /* AppDelegate.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		1B1B4DDE25E7894200BDA6DF /* SearchResultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsManager.swift; sourceTree = "<group>"; };
+		1B270E0325E8D03E0069975D /* AlertGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertGenerator.swift; sourceTree = "<group>"; };
 		1B3F020525DB982700EE70E1 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		1B46653425D140FE00CD04BE /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		1B5B5B5925C93DCE0088E734 /* screen-switcher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "screen-switcher.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -128,6 +130,7 @@
 				1BCBB9D325CD18F400684DFB /* TextObserver.swift */,
 				1B3F020525DB982700EE70E1 /* CoreDataHandler.swift */,
 				1BD07B7F25E5208B00454D7F /* Song.swift */,
+				1B270E0325E8D03E0069975D /* AlertGenerator.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 				1B82B50C25D46D18002E72B1 /* ContactDetailsVC.swift in Sources */,
 				1BCBB9D125CD184D00684DFB /* Text.swift in Sources */,
 				1B6B515325D9CAEE007A5705 /* screen-switcher.xcdatamodeld in Sources */,
+				1B270E0425E8D03E0069975D /* AlertGenerator.swift in Sources */,
 				1B5B5B6125C93DCE0088E734 /* ViewController.swift in Sources */,
 				1BD07B8025E5208B00454D7F /* Song.swift in Sources */,
 				1B5B5B5D25C93DCE0088E734 /* AppDelegate.swift in Sources */,

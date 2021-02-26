@@ -5,7 +5,8 @@
 //  Created by Urvaksh Sherdiwala on 23/02/21.
 //
 
-import Foundation
+import UIKit
+import Network
 
 protocol SearchResultsManagerDelegate { // Using delegation design principle so that data can be easily shared with iTunesSearchVC
     func passPreviewURLString(_ previewString: String)
@@ -16,15 +17,45 @@ protocol SearchResultsManagerDelegate { // Using delegation design principle so 
 struct SearchResultsManager {
     let iTunesURL = "https://itunes.apple.com/search?media=music&term=" // API base URL configured for only music
     var delegate: SearchResultsManagerDelegate?
+    let monitor = NWPathMonitor()
     
-    func fetchSongs(searchString: String) {
+    func fetchSongs(searchString: String) -> Int {
         // Since the API does not accept whitespaces in queries, we must replace them with + symbols
         let modifiedSearchStr = searchString.replacingOccurrences(of: " ", with: "+")
         let urlString = "\(iTunesURL)\(modifiedSearchStr)"
-        performRequest(with: urlString)
+        let errorCode = performRequest(with: urlString)
+        return errorCode
     }
     
-    func performRequest(with urlString: String) {
+    // This function will return error codes for different instances:
+    
+    // 0 = No error/Successful request
+    // 1 = No internet
+    func performRequest(with urlString: String) -> Int {
+        var errorCode = 0 // Initialise with no error
+        
+        // Create a closure that will perform certain actions depending on internet connection availability.
+        monitor.pathUpdateHandler = { path in
+            if path.status == .satisfied {
+                print("We're connected!")
+            } else {
+                errorCode = 1
+                /*
+                var noNetAlert = self.alertGenerator.generateAlert(withTitle: "No connection to internet found. Please try again!", withMessage: "")
+                noNetAlert = self.alertGenerator.addAction(withTitle: "OK", forAlert: noNetAlert)
+                DispatchQueue.main.async {
+                    callingVC!.present(noNetAlert, animated: true) {// Completion handler is unused in this case
+                        return
+                    }*/
+                }
+                    
+                //print("No connection.")
+            print(path.isExpensive)
+        }
+        
+        let queue = DispatchQueue(label: "Monitor")
+        monitor.start(queue: queue)
+
         // 1. Create a URL
         if let url = URL(string: urlString) { // Optional binding
             
@@ -46,6 +77,8 @@ struct SearchResultsManager {
             // 4. Start the task
             task.resume() // Newly initialised tasks need to be resumed since they are in a suspended state
         }
+        
+        return errorCode
     }
     
     func parseJSON(_ searchData: Data) -> SearchData? {

@@ -17,11 +17,11 @@ class MusicCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
     }
 
     func updateView(song: Song) {
         songNameLabel.text = song.trackCensoredName
-        //albumArtImageView.image = albumArt
         
         // Ensuring that the album art image looks good in the 100 px. x 100 px. square by setting the content mode to aspect fit
         albumArtImageView.contentMode = .scaleAspectFit
@@ -31,14 +31,14 @@ class MusicCell: UITableViewCell {
 
         // Fetch Image Data
         if let data = try? Data(contentsOf: url) {
-            // Create Image and Update Image View
+            // Update Image View
             albumArtImageView.image = UIImage(data: data)
         }
         
         let songLengthInSeconds = Double(song.trackTimeMillis!) * 0.001
         let songLengthInMins = Int(songLengthInSeconds / 60)
         
-        // Formatting the seconds with leading zeros in cases where there are only single-digit seconds after the minutes
+        // Formatting the seconds with leading zeros in cases where there are only single-digit seconds after the minutes (ex: 3:05)
         let remainingLengthInSeconds =  String(format: "%02d", Int(songLengthInSeconds) - (songLengthInMins * 60))
         songLengthLabel.text = String("\(songLengthInMins):\(remainingLengthInSeconds)")
         artistLabel.text = song.artistName
@@ -50,4 +50,3 @@ class MusicCell: UITableViewCell {
     }
 
 }
-

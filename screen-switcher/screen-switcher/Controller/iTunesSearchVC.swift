@@ -33,8 +33,11 @@ class iTunesSearchVC: UIViewController, UITableViewDelegate {
             
             // If there is an issue in internet connectivity
             if errorCode == 1 {
+                // Create a new alert
                 var noNetAlert = alertGenerator.generateAlert(withTitle: "No connection to internet found. Please try again!", withMessage: "")
+                // Add an action to the alert (OK button)
                 noNetAlert = alertGenerator.addAction(withTitle: "OK", forAlert: noNetAlert)
+                // UI Changes to be performed on main thread
                 DispatchQueue.main.async {
                     self.present(noNetAlert, animated: true) { // Completion handler is unused in this case
                         return
@@ -45,9 +48,6 @@ class iTunesSearchVC: UIViewController, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        DispatchQueue.main.async {
-            tableView.deselectRow(at: indexPath, animated: true)
-        }
         selectedSongURL = songsArray[indexPath.row].previewUrl // The song URL that will be sent to the audio player VC
         performSegue(withIdentifier: segueIdentifier, sender: self)
     }
@@ -61,6 +61,7 @@ class iTunesSearchVC: UIViewController, UITableViewDelegate {
 
 // MARK: Table View Data Source Methods
 extension iTunesSearchVC: UITableViewDataSource {
+    
     // Returns number of rows to display in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return songsArray.count
@@ -79,14 +80,15 @@ extension iTunesSearchVC: UITableViewDataSource {
 
 // MARK: Search Results Delegate Methods
 extension iTunesSearchVC: SearchResultsManagerDelegate {
-    
+    // This function will only be used in the audioPlayerVC class (to pass over the URL of the selected song)
+    // Hence, this function only returns in this VC
     func passPreviewURLString(_ previewString: String) {
         return
     }
     
     func didUpdateCells(_ searchData: SearchData) {
         songsArray = searchData.results
-        // Changes to UI must be done on main thread
+        // Changes to UI done on main thread
         DispatchQueue.main.async {
             self.iTunesTableView.reloadData()
         }

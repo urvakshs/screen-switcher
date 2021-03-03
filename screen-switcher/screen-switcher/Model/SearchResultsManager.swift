@@ -20,7 +20,7 @@ struct SearchResultsManager {
     let monitor = NWPathMonitor()
     
     func fetchSongs(searchString: String) -> Int {
-        // Since the API does not accept whitespaces in queries, we must replace them with + symbols
+        // Since the API uses "+" symbols instead of whitespaces in queries, we must perform this replacement
         let modifiedSearchStr = searchString.replacingOccurrences(of: " ", with: "+")
         let urlString = "\(iTunesURL)\(modifiedSearchStr)"
         let errorCode = performRequest(with: urlString)
@@ -34,23 +34,11 @@ struct SearchResultsManager {
     func performRequest(with urlString: String) -> Int {
         var errorCode = 0 // Initialise with no error
         
-        // Create a closure that will perform certain actions depending on internet connection availability.
+        // Create a closure that will return an error code of 1 when there is no internet connection availability.
         monitor.pathUpdateHandler = { path in
-            if path.status == .satisfied {
-                print("We're connected!")
-            } else {
+            if path.status != .satisfied {
                 errorCode = 1
-                /*
-                var noNetAlert = self.alertGenerator.generateAlert(withTitle: "No connection to internet found. Please try again!", withMessage: "")
-                noNetAlert = self.alertGenerator.addAction(withTitle: "OK", forAlert: noNetAlert)
-                DispatchQueue.main.async {
-                    callingVC!.present(noNetAlert, animated: true) {// Completion handler is unused in this case
-                        return
-                    }*/
-                }
-                    
-                //print("No connection.")
-            print(path.isExpensive)
+            }
         }
         
         let queue = DispatchQueue(label: "Monitor")
@@ -85,11 +73,9 @@ struct SearchResultsManager {
         let decoder = JSONDecoder()
         do {
             let decodedData = try decoder.decode(SearchData.self, from: searchData)
-            //print("decodedData in parseJSON = \(decodedData)")
             return decodedData
         } catch {
-            //delegate?.didFailWithError(error: error)
-            print("Error in decoding data: \(error.localizedDescription)")
+            delegate?.didFailWithError(error: error)
             return nil
         }
     }

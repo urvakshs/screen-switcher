@@ -27,12 +27,12 @@ class iTunesSearchVC: UIViewController, UITableViewDelegate {
     }
     
     @IBAction func searchButtonPressed(_ sender: UIButton) {
-        self.iTunesTableView.rowHeight = 120; // Needed to this line because my constraints kept failing and resizing the rows...
+        self.iTunesTableView.rowHeight = 120 // Needed to this line because my constraints kept failing and resizing the rows...
         if let searchText = searchTextField.text {
             let errorCode = searchResultsManager.fetchSongs(searchString: searchText)
+            
             // If there is an issue in internet connectivity
             if errorCode == 1 {
-                print("Entered into error handler in iTunesSearchVC")
                 var noNetAlert = alertGenerator.generateAlert(withTitle: "No connection to internet found. Please try again!", withMessage: "")
                 noNetAlert = alertGenerator.addAction(withTitle: "OK", forAlert: noNetAlert)
                 DispatchQueue.main.async {
@@ -45,8 +45,10 @@ class iTunesSearchVC: UIViewController, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.cellForRow(at: indexPath)?.isHighlighted = false
-        selectedSongURL = songsArray[indexPath.row].previewUrl
+        DispatchQueue.main.async {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+        selectedSongURL = songsArray[indexPath.row].previewUrl // The song URL that will be sent to the audio player VC
         performSegue(withIdentifier: segueIdentifier, sender: self)
     }
     

@@ -7,6 +7,7 @@
 
 import UIKit
 
+// Will be used to generate alerts for various errors from different view controllers
 struct AlertGenerator {
     
     func generateAlert(withTitle title: String, withMessage message: String) -> UIAlertController {
@@ -15,10 +16,10 @@ struct AlertGenerator {
     }
     
     func addAction(withTitle title: String, forAlert alert: UIAlertController) -> UIAlertController {
-        let newAction = UIAlertAction(title: title, style: .default) { (proceedAction) in
+        // I don't want the action to do anything, these are just error type alerts
+        let newAction = UIAlertAction(title: title, style: .default) { (action) in
             return
         }
-        
         alert.addAction(newAction)
         return alert
     }

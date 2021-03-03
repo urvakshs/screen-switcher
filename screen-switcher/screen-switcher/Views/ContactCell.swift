@@ -19,6 +19,7 @@ class ContactCell: UITableViewCell {
     
     // Method called whenever cell needs to be updated with new information (using user defaults)
     func updateView(contact: [String: String]) {
+        self
         let contactName = contact["Name"]!
         let phoneNum = contact["Phone Number"]!
         nameLabel.text = "\(contactName)"

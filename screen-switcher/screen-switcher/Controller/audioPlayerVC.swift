@@ -22,16 +22,19 @@ class audioPlayerVC: UIViewController {
                     do {
                         // Create a new AVAudioPlayer instance and optionally unwrap
                         avPlayer = try AVAudioPlayer(data: data)
-                        if let player = avPlayer {
-                            player.volume = 1.0 // Not sure if this line is necessary?
-                            player.prepareToPlay()
-                            player.play()
-                        }
                     } catch {
-                        print("Error creating or playing back from AVAudioPlayer. \(error.localizedDescription)")
+                        print("Error in creation of AVAudioPlayer: \(error.localizedDescription)")
                     }
                 }
             }
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let player = avPlayer {
+            player.volume = 1.0 // Not sure if this line is necessary?
+            player.prepareToPlay()
+            player.play()
         }
     }
 }

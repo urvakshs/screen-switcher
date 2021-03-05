@@ -6,12 +6,46 @@
 //
 
 import UIKit
+import LocalAuthentication
 
 class LoginVC: UIViewController { // Programmatic implementation of a tab bar controller
-    private let segueIdentifier = "loginToContactDetails"
+    private let contactSegue = "loginToContactDetails"
+    private let iTunesSegue = "loginToItunes"
+    @IBOutlet weak var touchIDButton: UIButton!
+    @IBOutlet weak var appleIDButton: UIButton!
+    
+    //TODO: ADD TOUCH ID/FACE ID LOGIN
+    var context = LAContext()
+    
+    enum AuthenticationState {
+        case loggedIn, loggedOut
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        // The biometryType, which affects this app's UI when state changes, is only meaningful
+        //  after running canEvaluatePolicy. But make sure not to run this test from inside a
+        //  policy evaluation callback (for example, don't put next line in the state's didSet
+        //  method, which is triggered as a result of the state change made in the callback),
+        //  because that might result in deadlock.
+        context.canEvaluatePolicy(.deviceOwnerAuthentication, error: nil)
+
+        // Set the initial app state. This impacts the initial state of the UI as well.
+        state = .loggedOut
+    }
+    
+    // The current authentication state.
+    var state = AuthenticationState.loggedOut {
+
+        // Update the UI on a change.
+        didSet {
+            touchIDButton.isHighlighted = state == .loggedIn  // The button text changes on highlight.
+
+            // FaceID runs right away on evaluation, so you might want to warn the user.
+            // In this app, show a special Face ID prompt if the user is logged out, but
+            // only if the device supports that kind of authentication.
+            // faceIDLabel.isHidden = (state == .loggedin) || (context.biometryType != .faceID)
+        }
     }
     
     @IBAction func didPressLogin(_ sender: UIButton) {
@@ -59,8 +93,7 @@ class LoginVC: UIViewController { // Programmatic implementation of a tab bar co
             }
             self.present(tabBarVC, animated: true) // "self" keyword is needed in closures
             */
-            self.performSegue(withIdentifier: self.segueIdentifier, sender: self)
-            
+            self.performSegue(withIdentifier: self.contactSegue, sender: self)
         }
         
         // NOTE TO SELF: CODE WILL FAIL (NOT PROCEED TO TAB BAR CONTROLLER) IF YOU ADD SAME SET OF ACTIONS TO BOTH ALERT CONTROLLERS
@@ -71,18 +104,55 @@ class LoginVC: UIViewController { // Programmatic implementation of a tab bar co
         
         //actionSheetAlertController.addAction(cancelAction)
         //actionSheetAlertController.addAction(proceedAction)
-        
+
         
         // Present alert controller to user
-    
-        
         present(defaultAlertController, animated: true) { // Completion handler is unused in this case
             return
         }
-        /*
-        present(actionSheetAlertController, animated: true) { // Completion handler is unused in this case
-            return
-        }*/
+        
     }
     
+    // When login with touch/face ID is selected
+    @IBAction func biometricsButtonPressed(_ sender: UIButton) {
+        if state == .loggedIn {
+            // Log out immediately.
+            state = .loggedOut
+        } else {
+            // Get a fresh context for each login. If you use the same context on multiple attempts
+            // then a previously successful authentication causes the next policy evaluation to
+            // succeed without testing biometry again.
+            context = LAContext()
+
+            context.localizedCancelTitle = "Sign in using Apple ID"
+            // First check if we have the needed hardware support.
+            var error: NSError?
+            if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+                let reason = "Log in to your account"
+                context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason ) { success, error in
+                    if success {
+                        // Move to the main thread because a state update triggers UI changes.
+                        DispatchQueue.main.async { [unowned self] in
+                            self.state = .loggedIn
+                            self.performSegue(withIdentifier: self.iTunesSegue, sender: self)
+                        }
+                    } else {
+                        print(error?.localizedDescription ?? "Failed to authenticate")
+                        // Fall back to a asking for username and password.
+                        // ...
+                    }
+                }
+            } else {
+                print(error?.localizedDescription ?? "Can't evaluate policy")
+
+                // Fall back to a asking for username and password.
+                // ...
+            }
+        }
+    }
+    
+    // When login with Apple ID is selected
+    @IBAction func loginWithAppleIDPressed(_ sender: UIButton) {
+        
+    }
 }

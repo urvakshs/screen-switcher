@@ -14,7 +14,7 @@ class LoginVC: UIViewController { // Programmatic implementation of a tab bar co
     @IBOutlet weak var touchIDButton: UIButton!
     @IBOutlet weak var appleIDButton: UIButton!
     
-    //TODO: ADD TOUCH ID/FACE ID LOGIN
+    // TODO: ADD TOUCH ID/FACE ID LOGIN
     var context = LAContext()
     
     enum AuthenticationState {
@@ -23,6 +23,7 @@ class LoginVC: UIViewController { // Programmatic implementation of a tab bar co
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // The biometryType, which affects this app's UI when state changes, is only meaningful
         //  after running canEvaluatePolicy. But make sure not to run this test from inside a
         //  policy evaluation callback (for example, don't put next line in the state's didSet

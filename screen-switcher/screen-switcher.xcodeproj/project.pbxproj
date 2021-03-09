@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -25,6 +25,7 @@
 		1B98039E25D255090022A121 /* VCTextDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B98039D25D255090022A121 /* VCTextDelegate.swift */; };
 		1BB3F0E425D53529000B4FE3 /* ContactsTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB3F0E325D53529000B4FE3 /* ContactsTableVC.swift */; };
 		1BB3F0E725D54DA2000B4FE3 /* ContactCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BB3F0E625D54DA2000B4FE3 /* ContactCell.swift */; };
+		1BCAFF5325F7595C00CAA6F1 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 1BCAFF5225F7595C00CAA6F1 /* FacebookLogin */; };
 		1BCBB9D125CD184D00684DFB /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCBB9D025CD184D00684DFB /* Text.swift */; };
 		1BCBB9D425CD18F400684DFB /* TextObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BCBB9D325CD18F400684DFB /* TextObserver.swift */; };
 		1BD07B7A25E51B9700454D7F /* MusicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BD07B7925E51B9700454D7F /* MusicCell.swift */; };
@@ -67,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BCAFF5325F7595C00CAA6F1 /* FacebookLogin in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +163,9 @@
 			dependencies = (
 			);
 			name = "screen-switcher";
+			packageProductDependencies = (
+				1BCAFF5225F7595C00CAA6F1 /* FacebookLogin */,
+			);
 			productName = "screen-switcher";
 			productReference = 1B5B5B5925C93DCE0088E734 /* screen-switcher.app */;
 			productType = "com.apple.product-type.application";
@@ -188,6 +193,9 @@
 				Base,
 			);
 			mainGroup = 1B5B5B5025C93DCE0088E734;
+			packageReferences = (
+				1BCAFF5125F7595C00CAA6F1 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+			);
 			productRefGroup = 1B5B5B5A25C93DCE0088E734 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -389,7 +397,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.urvakshsherdiwala.screen-switcher123";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.urvakshsherdiwala.screen-switcher";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -408,7 +416,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.urvakshsherdiwala.screen-switcher123";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.urvakshsherdiwala.screen-switcher";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -437,6 +445,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1BCAFF5125F7595C00CAA6F1 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1BCAFF5225F7595C00CAA6F1 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1BCAFF5125F7595C00CAA6F1 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		1B6B515125D9CAEE007A5705 /* screen-switcher.xcdatamodeld */ = {

@@ -7,20 +7,21 @@
 
 import UIKit
 import LocalAuthentication
+import AuthenticationServices
 
-class LoginVC: UIViewController { // Programmatic implementation of a tab bar controller
+class LoginVC: UIViewController {
     private let contactSegue = "loginToContactDetails"
     private let iTunesSegue = "loginToItunes"
-    @IBOutlet weak var touchIDButton: UIButton!
-    @IBOutlet weak var appleIDButton: UIButton!
+    @IBOutlet weak var touchIDButton: UIButton! // "Log in with Touch ID" button
+    @IBOutlet weak var loginStackView: UIStackView! // Stack view used to manage the arrangement of the various login buttons
     
     // TODO: ADD TOUCH ID/FACE ID LOGIN
-    var context = LAContext()
+    private var context = LAContext()
     
     enum AuthenticationState {
         case loggedIn, loggedOut
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +34,13 @@ class LoginVC: UIViewController { // Programmatic implementation of a tab bar co
 
         // Set the initial app state. This impacts the initial state of the UI as well.
         state = .loggedOut
+        
+        setupProviderLoginView()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        performExistingAccountSetupFlows()
     }
     
     // The current authentication state.
@@ -152,8 +160,139 @@ class LoginVC: UIViewController { // Programmatic implementation of a tab bar co
         }
     }
     
-    // When login with Apple ID is selected
-    @IBAction func loginWithAppleIDPressed(_ sender: UIButton) {
+    func setupProviderLoginView() {
+        let appleIDButton = ASAuthorizationAppleIDButton()
+        // When the button is pressed, handleAuthorizationAppleIDButtonPress (objective-C) method is called
+        appleIDButton.addTarget(self, action: #selector(handleAuthorizationAppleIDButtonPress), for: .touchUpInside)
+        // Add the button to the login buttons' stack view
+        self.loginStackView.addArrangedSubview(appleIDButton)
+        // Make the height of the button the same as the others
+        let heightConstraint = appleIDButton.heightAnchor.constraint(equalToConstant: touchIDButton.frame.size.height)
+        appleIDButton.addConstraint(heightConstraint)
+    }
+    
+    @objc
+    func handleAuthorizationAppleIDButtonPress() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
         
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    
+    @objc
+    private func handleLogInWithAppleIDButtonPress() {
+        let appleIDProvider = ASAuthorizationAppleIDProvider()
+        let request = appleIDProvider.createRequest()
+        request.requestedScopes = [.fullName, .email]
+            
+        let authorizationController = ASAuthorizationController(authorizationRequests: [request])
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+
+    private func performExistingAccountSetupFlows() {
+        // Prepare requests for both Apple ID and password providers.
+        // ASAuthorizationAppleIDProvider is a mechanism for generating requests to authenticate users based on their Apple ID
+        // ASAuthorizationPasswordProvider is a mechanism for generating requests to perform keychain credential sharing.
+        let requests = [ASAuthorizationAppleIDProvider().createRequest(), ASAuthorizationPasswordProvider().createRequest()]
+        
+        // Create an authorization controller with the given requests.
+        let authorizationController = ASAuthorizationController(authorizationRequests: requests)
+        authorizationController.delegate = self
+        authorizationController.presentationContextProvider = self
+        authorizationController.performRequests()
+    }
+    /*
+    // Tell the delegate that the authorisation completed successfully
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        switch authorization.credential {
+        case let appleIDCredential as ASAuthorizationAppleIDCredential:
+            
+            // Create an account in your system.
+            let userIdentifier = appleIDCredential.user
+            let fullName = appleIDCredential.fullName
+            let email = appleIDCredential.email
+            
+            // For the purpose of this demo app, store the `userIdentifier` in the keychain.
+            self.saveUserInKeychain(userIdentifier)
+            
+            // For the purpose of this demo app, show the Apple ID credential information in the `ResultViewController`.
+        
+        case let passwordCredential as ASPasswordCredential:
+        
+            // Sign in using an existing iCloud Keychain credential.
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+            
+            // For the purpose of this demo app, show the password credential as an alert.
+            DispatchQueue.main.async {
+                self.showPasswordCredentialAlert(username: username, password: password)
+            }
+            
+        default:
+            break
+        }
+    }*/
+}
+
+extension LoginVC: ASAuthorizationControllerDelegate {
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
+        let alert = UIAlertController(title: "Error", message: error.localizedDescription, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    // Tell the delegate that the authorisation completed successfully
+    func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
+        if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
+            
+            // Create an account in your system.
+            // For the purpose of this demo app, store the these details in the keychain.
+            /*KeychainItem.currentUserIdentifier = appleIDCredential.user
+            KeychainItem.currentUserFirstName = appleIDCredential.fullName?.givenName
+            KeychainItem.currentUserLastName = appleIDCredential.fullName?.familyName
+            KeychainItem.currentUserEmail = appleIDCredential.email*/
+            
+            print("User Id - \(appleIDCredential.user)")
+            print("User Name - \(appleIDCredential.fullName?.description ?? "N/A")")
+            print("User Email - \(appleIDCredential.email ?? "N/A")")
+            print("Real User Status - \(appleIDCredential.realUserStatus.rawValue)")
+            
+            if let identityTokenData = appleIDCredential.identityToken,
+                let identityTokenString = String(data: identityTokenData, encoding: .utf8) {
+                print("Identity Token \(identityTokenString)")
+            }
+            
+            // Show Home View Controller
+            performSegue(withIdentifier: iTunesSegue, sender: self)
+            
+        } else if let passwordCredential = authorization.credential as? ASPasswordCredential {
+            
+            // Sign in using an existing iCloud Keychain credential.
+            let username = passwordCredential.user
+            let password = passwordCredential.password
+            
+            // Show the password credential as an alert.
+            DispatchQueue.main.async { // Displaying something or changing UI requires switching to main thread
+                let message = "The app has received your selected credential from the keychain. \n\n Username: \(username)\n Password: \(password)"
+                let alertController = UIAlertController(title: "Keychain Credential Received",
+                                                        message: message,
+                                                        preferredStyle: .alert)
+                alertController.addAction(UIAlertAction(title: "Dismiss", style: .cancel, handler: nil))
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+}
+
+extension LoginVC: ASAuthorizationControllerPresentationContextProviding {
+    // Tells the delegate from which window it should present content to the user (required)
+    func presentationAnchor(for controller: ASAuthorizationController) -> ASPresentationAnchor {
+        self.view.window!
     }
 }

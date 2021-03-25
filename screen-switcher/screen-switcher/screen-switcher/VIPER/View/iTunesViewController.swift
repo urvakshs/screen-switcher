@@ -18,8 +18,8 @@ class iTunesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         searchResultsTable.dataSource = self
+        // Use the router to set the bidirectional flow of data and functionality throughout the program using delegation and protocol principle.
         iTunesRouter.iTunesRouting(view: self)
-        print(presenter!)
     }
     
     @IBAction func searchButtonPressed(_ sender: UIButton) {

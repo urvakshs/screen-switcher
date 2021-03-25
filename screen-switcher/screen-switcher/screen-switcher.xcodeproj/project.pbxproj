@@ -11,7 +11,14 @@
 		1B0142672609EE1D003E7B59 /* ContactDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0142662609EE1D003E7B59 /* ContactDetails.swift */; };
 		1B01426A2609EE81003E7B59 /* OutputVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B0142692609EE81003E7B59 /* OutputVC.swift */; };
 		1B01426D2609F192003E7B59 /* ContactDetailsVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B01426C2609F192003E7B59 /* ContactDetailsVM.swift */; };
+		1B014275260B1EC3003E7B59 /* ViperContracts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B014274260B1EC3003E7B59 /* ViperContracts.swift */; };
+		1B014279260B2175003E7B59 /* iTunesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B014278260B2175003E7B59 /* iTunesViewController.swift */; };
+		1B01427C260B221A003E7B59 /* SearchData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B01427B260B221A003E7B59 /* SearchData.swift */; };
+		1B01427F260B2B10003E7B59 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B01427E260B2B10003E7B59 /* NetworkManager.swift */; };
+		1B014282260B2CC7003E7B59 /* iTunesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B014281260B2CC7003E7B59 /* iTunesCell.swift */; };
+		1B014285260B336D003E7B59 /* iTunesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B014284260B336D003E7B59 /* iTunesPresenter.swift */; };
 		1B1B4DDF25E7894200BDA6DF /* SearchResultsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1B4DDE25E7894200BDA6DF /* SearchResultsManager.swift */; };
+		1B1DC1BE260C78C50016FBC2 /* iTunesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1DC1BD260C78C50016FBC2 /* iTunesRouter.swift */; };
 		1B270E0425E8D03E0069975D /* AlertGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B270E0325E8D03E0069975D /* AlertGenerator.swift */; };
 		1B3F020625DB982700EE70E1 /* CoreDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B3F020525DB982700EE70E1 /* CoreDataHandler.swift */; };
 		1B46653525D140FE00CD04BE /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B46653425D140FE00CD04BE /* LoginVC.swift */; };
@@ -44,7 +51,14 @@
 		1B0142662609EE1D003E7B59 /* ContactDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetails.swift; sourceTree = "<group>"; };
 		1B0142692609EE81003E7B59 /* OutputVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputVC.swift; sourceTree = "<group>"; };
 		1B01426C2609F192003E7B59 /* ContactDetailsVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailsVM.swift; sourceTree = "<group>"; };
+		1B014274260B1EC3003E7B59 /* ViperContracts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViperContracts.swift; sourceTree = "<group>"; };
+		1B014278260B2175003E7B59 /* iTunesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesViewController.swift; sourceTree = "<group>"; };
+		1B01427B260B221A003E7B59 /* SearchData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchData.swift; sourceTree = "<group>"; };
+		1B01427E260B2B10003E7B59 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		1B014281260B2CC7003E7B59 /* iTunesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesCell.swift; sourceTree = "<group>"; };
+		1B014284260B336D003E7B59 /* iTunesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesPresenter.swift; sourceTree = "<group>"; };
 		1B1B4DDE25E7894200BDA6DF /* SearchResultsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsManager.swift; sourceTree = "<group>"; };
+		1B1DC1BD260C78C50016FBC2 /* iTunesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesRouter.swift; sourceTree = "<group>"; };
 		1B270E0325E8D03E0069975D /* AlertGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertGenerator.swift; sourceTree = "<group>"; };
 		1B3F020525DB982700EE70E1 /* CoreDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHandler.swift; sourceTree = "<group>"; };
 		1B46653425D140FE00CD04BE /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
@@ -98,6 +112,11 @@
 		1B0142592609E8C1003E7B59 /* VIPER */ = {
 			isa = PBXGroup;
 			children = (
+				1B014273260B1BE3003E7B59 /* Router */,
+				1B01426F260B1BA2003E7B59 /* View */,
+				1B014270260B1BAA003E7B59 /* Interactor */,
+				1B014271260B1BB0003E7B59 /* Presenter */,
+				1B014272260B1BB6003E7B59 /* Entity */,
 			);
 			path = VIPER;
 			sourceTree = "<group>";
@@ -137,6 +156,47 @@
 			path = MVC;
 			sourceTree = "<group>";
 		};
+		1B01426F260B1BA2003E7B59 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1B014278260B2175003E7B59 /* iTunesViewController.swift */,
+				1B014281260B2CC7003E7B59 /* iTunesCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		1B014270260B1BAA003E7B59 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				1B01427E260B2B10003E7B59 /* NetworkManager.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		1B014271260B1BB0003E7B59 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				1B014284260B336D003E7B59 /* iTunesPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		1B014272260B1BB6003E7B59 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				1B01427B260B221A003E7B59 /* SearchData.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		1B014273260B1BE3003E7B59 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				1B1DC1BD260C78C50016FBC2 /* iTunesRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
 		1B5B5B5025C93DCE0088E734 = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +219,7 @@
 				1B5B5B6225C93DCE0088E734 /* Main.storyboard */,
 				1B01425D2609E962003E7B59 /* MVC */,
 				1B0142592609E8C1003E7B59 /* VIPER */,
+				1B014274260B1EC3003E7B59 /* ViperContracts.swift */,
 				1B0142582609E8B9003E7B59 /* MVVM */,
 				1B5B5B5C25C93DCE0088E734 /* AppDelegate.swift */,
 				1B5B5B5E25C93DCE0088E734 /* SceneDelegate.swift */,
@@ -292,23 +353,30 @@
 				1B98039E25D255090022A121 /* VCTextDelegate.swift in Sources */,
 				1BCBB9D425CD18F400684DFB /* TextObserver.swift in Sources */,
 				1BF52D0025E7714E0070227C /* audioPlayerVC.swift in Sources */,
+				1B014282260B2CC7003E7B59 /* iTunesCell.swift in Sources */,
 				1B01426A2609EE81003E7B59 /* OutputVC.swift in Sources */,
 				1BB3F0E725D54DA2000B4FE3 /* ContactCell.swift in Sources */,
 				1B01426D2609F192003E7B59 /* ContactDetailsVM.swift in Sources */,
+				1B01427C260B221A003E7B59 /* SearchData.swift in Sources */,
 				1B0142632609ED05003E7B59 /* InputVC.swift in Sources */,
 				1B8B3F9F25D501DE00D3E026 /* Validator.swift in Sources */,
 				1BD07B7A25E51B9700454D7F /* MusicCell.swift in Sources */,
+				1B014285260B336D003E7B59 /* iTunesPresenter.swift in Sources */,
 				1BD07B7D25E51EEF00454D7F /* iTunesSearchVC.swift in Sources */,
 				1B8F7E1325CA7E7E006B516E /* SecondViewController.swift in Sources */,
 				1B46653525D140FE00CD04BE /* LoginVC.swift in Sources */,
+				1B1DC1BE260C78C50016FBC2 /* iTunesRouter.swift in Sources */,
 				1B3F020625DB982700EE70E1 /* CoreDataHandler.swift in Sources */,
+				1B014279260B2175003E7B59 /* iTunesViewController.swift in Sources */,
 				1B82B50C25D46D18002E72B1 /* ContactDetailsVC.swift in Sources */,
 				1BCBB9D125CD184D00684DFB /* Text.swift in Sources */,
+				1B014275260B1EC3003E7B59 /* ViperContracts.swift in Sources */,
 				1B6B515325D9CAEE007A5705 /* screen-switcher.xcdatamodeld in Sources */,
 				1B270E0425E8D03E0069975D /* AlertGenerator.swift in Sources */,
 				1B5B5B6125C93DCE0088E734 /* ViewController.swift in Sources */,
 				1B0142672609EE1D003E7B59 /* ContactDetails.swift in Sources */,
 				1BD07B8025E5208B00454D7F /* Song.swift in Sources */,
+				1B01427F260B2B10003E7B59 /* NetworkManager.swift in Sources */,
 				1B5B5B5D25C93DCE0088E734 /* AppDelegate.swift in Sources */,
 				1B5B5B5F25C93DCE0088E734 /* SceneDelegate.swift in Sources */,
 				1B1B4DDF25E7894200BDA6DF /* SearchResultsManager.swift in Sources */,
